@@ -48,3 +48,26 @@ body{
 .clear:hover{
     background-color: lightcoral;
 }
+.firstRow{
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#screen{
+    width: 300px;
+    border: 1px solid pink;
+    height: 75px;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.previous{
+    font-size: 20px;
+}
+.current{
+    font-size: 30px;
+}
