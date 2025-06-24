@@ -32,7 +32,15 @@ document.addEventListener("DOMContentLoaded",function(){
     })
 
     equal.addEventListener("click",function(){
-        calculate();
+        if(currentValue !='' && previousValue !=''){
+            calculate();
+            previousScreen.textContent='';
+            if(previousValue.length<=10){
+                currentScreen.textContent = previousValue;
+            } else{
+                currentScreen.textContent =Number(previousValue).toExponential(8);
+            }
+        }
     })
 })
 
@@ -57,8 +65,17 @@ function calculate(){
     } else if(operator === '-'){
         previousValue-=currentValue;
     } else if(operator === 'x'){
-        previousValue-=currentValue;
-    }else if(operator === '-'){
-        previousValue-=currentValue;
+        previousValue*=currentValue;
+    }else{
+        previousValue/=currentValue;
+    }
+
+    previousValue=previousValue.toString();
+    currentValue = previousValue.toString();
+}
+
+function addDecimal(){
+    if(!currentValue.includes(".")){
+        currentValue+=".";
     }
 }
