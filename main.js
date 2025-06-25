@@ -18,9 +18,11 @@ document.addEventListener("DOMContentLoaded",function(){
     }))
 
     operators.forEach((op)=>op.addEventListener("click",function(e){
+        if(operator===''){
         handleOperator(e.target.textContent);
         previousScreen.textContent = previousValue + " " + operator;
         currentScreen.textContent=currentValue;
+        }
     }))
 
     clear.addEventListener("click", function(){
@@ -35,12 +37,16 @@ document.addEventListener("DOMContentLoaded",function(){
         if(currentValue !='' && previousValue !=''){
             calculate();
             previousScreen.textContent='';
-            console.log(previousValue.length);
-            if(previousValue.length<=18){
-                currentScreen.textContent = previousValue;
-            } else{
-                currentScreen.textContent =(Number(previousValue).toExponential(8)).toString();
+            if(typeof previousValue==="string"){
+                currentScreen.textContent=previousValue;
             }
+            else{
+                if(previousValue.length<=18){
+                    currentScreen.textContent = previousValue;
+                } else{
+                    currentScreen.textContent =(Number(previousValue).toExponential(8)).toString();
+                }
+                }
         }
     })
 
@@ -64,8 +70,6 @@ function handleOperator(op){
 function calculate(){
     previousValue = Number(previousValue);
     currentValue = Number(currentValue);
-    console.log(previousValue);
-    console.log(currentValue);
 
     if(operator ==='+'){
         previousValue+=currentValue;
@@ -76,9 +80,21 @@ function calculate(){
     }else{
         previousValue/=currentValue;
     }
-    previousValue = previousValue.toFixed(3);
-    previousValue=previousValue.toString();
-    currentValue = previousValue.toString();
+    if(!Number.isInteger(previousValue)){
+        previousValue = previousValue.toFixed(3);
+    }
+    console.log(operator);
+    console.log(currentValue);
+    if(operator==='/'&&currentValue===0){
+        previousValue='Divide by Zero Error';
+        currentValue=previousValue;
+    }
+    else{
+        previousValue=previousValue.toString();
+        currentValue = previousValue.toString();
+    }
+    console.log(currentValue);
+    operator='';
 }
 
 function addDecimal(){
