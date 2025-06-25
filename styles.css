@@ -42,11 +42,21 @@ body{
     background-color: grey;
 }
 .clear{
+    width: 180px;
     border: 1px solid red;
     border-radius: 10px;
 }
 .clear:hover{
     background-color: lightcoral;
+}
+.del{
+    border: 1px solid pink;
+    border-radius: 10px;
+    padding: 0px;
+    width: 180px;
+}
+.del:hover{
+    background-color: red;
 }
 .firstRow{
     display: flex;    
@@ -57,7 +67,7 @@ body{
 .secondRow{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: flex-end;
 }
 #screen{
