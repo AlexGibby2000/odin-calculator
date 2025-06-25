@@ -90,8 +90,6 @@ function calculate(){
     if(!Number.isInteger(previousValue)){
         previousValue = previousValue.toFixed(3);
     }
-    console.log(operator);
-    console.log(currentValue);
     if(operator==='/'&&currentValue===0){
         previousValue='Divide by Zero Error';
         currentValue=previousValue;
@@ -100,7 +98,6 @@ function calculate(){
         previousValue=previousValue.toString();
         currentValue = previousValue.toString();
     }
-    console.log(currentValue);
     operator='';
 }
 
