@@ -3,6 +3,7 @@ let previousValue = '';
 let currentValue = '';
 document.addEventListener("DOMContentLoaded",function(){
     let clear = document.querySelector(".clear");
+    let del = document.querySelector(".del");
     let equal = document.querySelector(".equal");
     let decimal = document.querySelector(".decimal");
 
@@ -31,6 +32,12 @@ document.addEventListener("DOMContentLoaded",function(){
         operator = '';
         previousScreen.textContent= currentValue;
         currentScreen.textContent= currentValue;
+    })
+    del.addEventListener("click",function(){
+        if(currentValue.length>0){
+            currentValue=currentValue.slice(0,-1);
+        }
+        currentScreen.textContent=currentValue;
     })
 
     equal.addEventListener("click",function(){
