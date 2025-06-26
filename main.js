@@ -20,9 +20,26 @@ document.addEventListener("DOMContentLoaded",function(){
 
     operators.forEach((op)=>op.addEventListener("click",function(e){
         if(operator===''){
-        handleOperator(e.target.textContent);
-        previousScreen.textContent = previousValue + " " + operator;
-        currentScreen.textContent=currentValue;
+            handleOperator(e.target.textContent);
+            previousScreen.textContent = previousValue + " " + operator;
+            currentScreen.textContent=currentValue;
+        }
+        else if(currentValue !='' && previousValue !=''){
+            calculate();
+            previousScreen.textContent='';
+            if(typeof previousValue==="string"){
+                currentScreen.textContent=previousValue;
+            }
+            else{
+                if(previousValue.length<=18){
+                    currentScreen.textContent = previousValue;
+                } else{
+                    currentScreen.textContent =(Number(previousValue).toExponential(8)).toString();
+                }
+                }
+                handleOperator(e.target.textContent);
+                previousScreen.textContent = previousValue + " " + operator;
+                currentScreen.textContent=currentValue;
         }
     }));
 
@@ -168,9 +185,9 @@ function handleNumber(num){
 }
 
 function handleOperator(op){
-    operator = op;
-    previousValue = currentValue;
-    currentValue = '';
+        operator = op;
+        previousValue = currentValue;
+        currentValue = '';
 }
 
 function calculate(){
